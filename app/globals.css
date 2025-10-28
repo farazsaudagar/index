@@ -1,12 +1,29 @@
 @import "tailwindcss";
 
 :root {
-  --font-inter: var(--font-inter);
+  --font-dm-serif: var(--font-dm-serif);
   --font-playfair: var(--font-playfair);
+  
+  /* Colors */
+  --base-light: #F5EFE7;
+  --neutral-sand: #D8C4B6;
+  --accent-blue: #3E5879;
+  --accent-deep: #213555;
+  --shelf-color: #ebe1d6;
+  --shelf-plank: #EBDDCB;
+  --wood-tone: #AB9076;
+  --gradient-top: #F6EFE8;
+  --gradient-bottom: #EDE3D9;
+  --white: #FFFFFF;
 }
 
 body {
-  font-family: var(--font-inter), system-ui, sans-serif;
+  font-family: var(--font-dm-serif), serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(180deg, var(--gradient-top) 0%, var(--gradient-bottom) 100%);
+  background-attachment: fixed;
+  min-height: 100vh;
 }
 
 .font-playfair {
@@ -14,6 +31,12 @@ body {
 }
 
 .edge-fade {
-  -webkit-mask-image: linear-gradient(to right, transparent 0, black 32px, black calc(100% - 32px), transparent 100%);
-  mask-image: linear-gradient(to right, transparent 0, black 32px, black calc(100% - 32px), transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,0) 0, rgba(0,0,0,1) 28px, rgba(0,0,0,1) calc(100% - 28px), rgba(0,0,0,0) 100%);
+  mask-image: linear-gradient(to right, rgba(0,0,0,0) 0, rgba(0,0,0,1) 28px, rgba(0,0,0,1) calc(100% - 28px), rgba(0,0,0,0) 100%);
+}
+
+/* Hide scrollbar */
+.overflow-x-auto::-webkit-scrollbar,
+.shelf-scroll::-webkit-scrollbar {
+  display: none;
 }

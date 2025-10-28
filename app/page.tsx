@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Section from "@/components/Section";
+import ShelfCard from "@/components/ShelfCard";
 import { forYouBooks, trendingBooks, popularBooks } from "@/lib/mockData";
 
 export default function Home() {
@@ -7,15 +8,29 @@ export default function Home() {
     <div className="min-h-screen">
       <Navbar />
       
-      <main className="container mx-auto px-8 py-12">
-        <h1 className="font-playfair text-xl md:text-2xl text-ink/80 mb-6 text-center">
+      <main className="mx-auto px-4 py-8" style={{ maxWidth: '1400px' }}>
+        {/* For You Section */}
+        <div className="mb-12">
+          <Section title="recommended reads for you" items={forYouBooks} />
+        </div>
+
+        {/* Discover Shelves Heading */}
+        <h1 
+          className="text-3xl mb-8 text-center"
+          style={{ 
+            color: 'var(--accent-deep)',
+            fontFamily: 'var(--font-dm-serif)'
+          }}
+        >
           discover shelves that feel like you.
         </h1>
-        
-        <div className="space-y-16">
-          <Section title="for you" items={forYouBooks} />
-          <Section title="trending" items={trendingBooks} />
-          <Section title="popular" items={popularBooks} />
+
+        {/* Shelf Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <ShelfCard name="Shelf Name" books={trendingBooks} />
+          <ShelfCard name="Shelf Name" books={popularBooks} />
+          <ShelfCard name="Shelf Name" books={forYouBooks} />
+          <ShelfCard name="Shelf Name" books={trendingBooks} />
         </div>
       </main>
     </div>

@@ -1,13 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import { Search } from "lucide-react";
 
 export default function Navbar() {
   const [activeLink, setActiveLink] = useState("explore");
   const [searchQuery, setSearchQuery] = useState("");
 
   const navLinks = [
-    { id: "index", label: "index" },
     { id: "explore", label: "explore" },
     { id: "shelves", label: "shelves" },
     { id: "community", label: "community" },
@@ -15,61 +15,63 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="sticky top-0 z-50 bg-paper/95 backdrop-blur-sm border-b border-sand/20">
-      <div className="container mx-auto px-8 py-4">
-        <div className="flex items-center justify-between">
-          {/* Left side - Title and Navigation */}
-          <div className="flex flex-col">
-            <h1 className="font-playfair text-lg font-medium text-ink mb-2">
-              Home/Explore Page
-            </h1>
-            <div className="flex space-x-6">
-              {navLinks.map((link) => (
-                <button
-                  key={link.id}
-                  onClick={() => setActiveLink(link.id)}
-                  className={`
-                    font-playfair text-sm text-ink relative
-                    hover:text-navy transition-colors duration-200
-                    ${activeLink === link.id 
-                      ? 'text-navy after:absolute after:bottom-[-4px] after:left-0 after:right-0 after:h-[1px] after:bg-navy' 
-                      : ''
-                    }
-                  `}
-                >
-                  {link.label}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Right side - Search */}
-          <div className="relative">
-            <div className="relative">
-              <input
-                type="text"
-                placeholder="search shelves, books, authors, users, etc..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="
-                  w-80 px-4 py-2 pr-10 rounded-full
-                  bg-paper border border-sand/50
-                  text-sm text-ink placeholder:text-navy/60
-                  focus:outline-none focus:ring-2 focus:ring-sand/40 focus:border-sand/60
-                  transition-all duration-200
-                "
-              />
-              <svg 
-                className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-navy/60" 
-                fill="none" 
-                stroke="currentColor" 
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
+    <nav 
+      className="sticky top-0 z-50" 
+      style={{ backgroundColor: 'var(--gradient-top)' }}
+    >
+      <div className="container mx-auto px-8 h-16 flex items-center justify-between">
+        {/* Logo and Navigation - Single Row */}
+        <div className="flex items-center gap-6">
+          <h1 
+            className="text-2xl font-medium" 
+            style={{ 
+              color: 'var(--accent-deep)',
+              fontFamily: 'var(--font-dm-serif)'
+            }}
+          >
+            index
+          </h1>
+          <div className="flex items-center gap-6">
+            {navLinks.map((link) => (
+              <button
+                key={link.id}
+                onClick={() => setActiveLink(link.id)}
+                className="text-sm hover:opacity-70 transition-opacity duration-200"
+                style={{ 
+                  color: 'var(--accent-blue)',
+                  fontFamily: 'var(--font-dm-serif)'
+                }}
               >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-              </svg>
-            </div>
+                {link.label}
+              </button>
+            ))}
           </div>
+        </div>
+
+        {/* Search */}
+        <div className="relative">
+          <input
+            type="text"
+            placeholder="search shelves, books, authors, users, etc..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="
+              w-[486px] h-[30px] px-4 pr-10 rounded-full
+              bg-white text-sm
+              focus:outline-none focus:ring-2 focus:ring-accent-blue/20
+              transition-all duration-200
+            "
+            style={{ 
+              color: 'var(--accent-deep)',
+              fontFamily: 'var(--font-dm-serif)'
+            }}
+          />
+          <Search 
+            className="absolute right-3 top-1/2 -translate-y-1/2" 
+            size={16}
+            strokeWidth={2}
+            style={{ color: 'var(--neutral-sand)' }}
+          />
         </div>
       </div>
     </nav>
