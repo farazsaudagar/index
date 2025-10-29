@@ -57,6 +57,9 @@ export default function Explore() {
             .then(results => {
               const books = normalizeBooks(results.flat(), 8);
               if (books.length > 0) setForYouBooks(books);
+            })
+            .catch(error => {
+              console.error('Failed to fetch books for "For You" section:', error);
             });
         });
 
@@ -74,6 +77,9 @@ export default function Explore() {
             .then(results => {
               const books = normalizeBooks(results, 5);
               if (books.length > 0) setTrendingBooks(books);
+            })
+            .catch(error => {
+              console.error('Failed to fetch books for "Trending" section:', error);
             });
         });
 
@@ -91,7 +97,11 @@ export default function Explore() {
             .then(results => {
               const books = normalizeBooks(results, 5);
               if (books.length > 0) setPopularBooks(books);
-            });
+            })
+            .catch(error => {
+              console.error('Failed to fetch books for "Popular" section:', error);
+            })
+            .finally(() => setIsLoading(false));
         });
 
       // Wait for all promises to settle before turning off loading state

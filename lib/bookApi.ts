@@ -398,7 +398,7 @@ class BookAPI {
     // Skip automatic enrichment to avoid excessive API calls
     // Enrichment can be done on-demand when viewing book details
     // Only enrich if book has NO cover at all (not just missing description/isbn)
-    const needsEnrichment = primaryResults.some(book => !book.coverUrl || book.coverUrl === '');
+    const needsEnrichment = primaryResults.some(book => !book.coverUrl);
     
     if (needsEnrichment && this.providers.length > 1 && primaryResults.length <= 5) {
       // Only enrich if we have a small number of results (e.g., single book search)
@@ -406,7 +406,7 @@ class BookAPI {
       const enrichedResults = await Promise.all(
         primaryResults.map(async (book) => {
           // Only enrich books with no cover
-          if (!book.coverUrl || book.coverUrl === '') {
+          if (!book.coverUrl) {
             const fallbackParams: SearchParams = {
               query: book.title,
               searchType: 'title',
