@@ -34,8 +34,8 @@ export default function Explore() {
           }));
       };
 
-      // Fetch "For You" section - use broader search for classic literature
-      searchBooks({ query: "classic literature", searchType: 'general', limit: 15 })
+      // Create promise for "For You" section
+      const forYouPromise = searchBooks({ query: "classic literature", searchType: 'general', limit: 15 })
         .then(results => {
           const books = normalizeBooks(results, 8);
           if (books.length > 0) {
@@ -44,7 +44,7 @@ export default function Explore() {
         })
         .catch(() => {
           // Fallback to specific classics if broad search fails
-          Promise.all([
+          return Promise.all([
             searchBooks({ query: "Ulysses", searchType: 'title', limit: 1 }),
             searchBooks({ query: "The Great Gatsby", searchType: 'title', limit: 1 }),
             searchBooks({ query: "1984", searchType: 'title', limit: 1 }),
@@ -63,8 +63,8 @@ export default function Explore() {
             });
         });
 
-      // Fetch trending books - contemporary bestsellers
-      searchBooks({ query: "bestseller 2023 2024", searchType: 'general', limit: 15 })
+      // Create promise for trending books
+      const trendingPromise = searchBooks({ query: "bestseller 2023 2024", searchType: 'general', limit: 15 })
         .then(results => {
           const books = normalizeBooks(results, 5);
           if (books.length > 0) {
@@ -73,7 +73,7 @@ export default function Explore() {
         })
         .catch(() => {
           // Fallback
-          searchBooks({ query: "popular fiction", searchType: 'general', limit: 5 })
+          return searchBooks({ query: "popular fiction", searchType: 'general', limit: 5 })
             .then(results => {
               const books = normalizeBooks(results, 5);
               if (books.length > 0) setTrendingBooks(books);
@@ -83,18 +83,17 @@ export default function Explore() {
             });
         });
 
-      // Fetch popular books - mystery thriller
-      searchBooks({ query: "mystery thriller", searchType: 'general', limit: 15 })
+      // Create promise for popular books
+      const popularPromise = searchBooks({ query: "mystery thriller", searchType: 'general', limit: 15 })
         .then(results => {
           const books = normalizeBooks(results, 5);
           if (books.length > 0) {
             setPopularBooks(books);
-            setIsLoading(false);
           }
         })
         .catch(() => {
           // Fallback
-          searchBooks({ query: "popular books", searchType: 'general', limit: 5 })
+          return searchBooks({ query: "popular books", searchType: 'general', limit: 5 })
             .then(results => {
               const books = normalizeBooks(results, 5);
               if (books.length > 0) setPopularBooks(books);
@@ -105,10 +104,11 @@ export default function Explore() {
             .finally(() => setIsLoading(false));
         });
 
-      // Set loading to false after max 2 seconds (sections appear as they load)
-      setTimeout(() => {
-        setIsLoading(false);
-      }, 2000);
+      // Wait for all promises to settle before turning off loading state
+      Promise.allSettled([forYouPromise, trendingPromise, popularPromise])
+        .then(() => {
+          setIsLoading(false);
+        });
     }
 
     fetchBooks();
