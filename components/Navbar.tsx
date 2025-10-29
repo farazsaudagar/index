@@ -29,7 +29,7 @@ export default function Navbar() {
               fontFamily: 'var(--font-dm-serif)'
             }}
           >
-            index
+            shelv
           </h1>
           <div className="flex items-center gap-6">
             {navLinks.map((link) => (
