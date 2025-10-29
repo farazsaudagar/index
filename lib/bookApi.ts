@@ -138,7 +138,8 @@ class OpenLibraryProvider implements BookProvider {
       ? `https://covers.openlibrary.org/b/id/${coverId}-L.jpg`
       : undefined;
 
-    const isbn = doc.isbn?.[0] || doc.isbn?.[doc.isbn.length - 1];
+    // Use the first ISBN if available; fallback logic removed for clarity
+    const isbn = doc.isbn?.[0];
     const author = doc.author_name?.[0] || 'Unknown Author';
 
     return {
