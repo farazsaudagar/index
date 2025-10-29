@@ -10,6 +10,7 @@
  * Designed for extensibility (NYT, ISBNdb, etc.).
  */
 
+import { v4 as uuidv4 } from 'uuid';
 import { Book } from './mockData';
 
 // Extended book interface with additional metadata
@@ -143,7 +144,7 @@ class OpenLibraryProvider implements BookProvider {
     const author = doc.author_name?.[0] || 'Unknown Author';
 
     return {
-      id: doc.key || `openlibrary_${doc.isbn?.[0] || Math.random().toString(36).slice(2, 11)}`,
+      id: doc.key || `openlibrary_${doc.isbn?.[0] || uuidv4()}`,
       title: doc.title || 'Untitled',
       author,
       coverUrl: coverUrl || '',
@@ -249,7 +250,7 @@ class GoogleBooksProvider implements BookProvider {
     const author = volumeInfo.authors?.[0] || 'Unknown Author';
 
     return {
-      id: item.id || `googlebooks_${isbn || Math.random().toString(36).slice(2, 11)}`,
+      id: item.id || `googlebooks_${isbn || uuidv4()}`,
       title: volumeInfo.title || 'Untitled',
       author,
       coverUrl,
