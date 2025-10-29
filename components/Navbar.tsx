@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Search } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { Typography } from "@/design-system";
 
 export default function Navbar() {
   const [activeLink, setActiveLink] = useState("explore");
@@ -17,23 +18,14 @@ export default function Navbar() {
   ];
 
   return (
-    <nav 
-      className="sticky top-0 z-50" 
-      style={{ backgroundColor: 'var(--gradient-top)' }}
-    >
-      <div className="container mx-auto px-8 h-16 flex items-center justify-between">
+    <nav className="sticky top-0 z-50 bg-gradient-top">
+      <div className="container mx-auto px-8 h-16 layout-flex-center">
         {/* Logo and Navigation - Single Row */}
-        <div className="flex items-center gap-6">
-          <h1 
-            className="text-2xl font-medium" 
-            style={{ 
-              color: 'var(--accent-deep)',
-              fontFamily: 'var(--font-dm-serif)'
-            }}
-          >
-            shelv
-          </h1>
-          <div className="flex items-center gap-6">
+        <div className="layout-flex-row">
+          <Typography variant="h1" className="text-2xl font-medium">
+            bookhouse
+          </Typography>
+          <div className="layout-flex-row">
             {navLinks.map((link) => (
               <button
                 key={link.id}
@@ -43,11 +35,7 @@ export default function Navbar() {
                     router.push("/explore");
                   }
                 }}
-                className="text-sm hover:opacity-70 transition-opacity duration-200"
-                style={{ 
-                  color: 'var(--accent-blue)',
-                  fontFamily: 'var(--font-dm-serif)'
-                }}
+                className="nav-link text-accent-blue font-primary"
               >
                 {link.label}
               </button>
@@ -62,23 +50,9 @@ export default function Navbar() {
             placeholder="search shelves, books, authors, users, etc..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="
-              w-[486px] h-[30px] px-4 pr-10 rounded-full
-              bg-white text-sm
-              focus:outline-none focus:ring-2 focus:ring-accent-blue/20
-              transition-all duration-200
-            "
-            style={{ 
-              color: 'var(--accent-deep)',
-              fontFamily: 'var(--font-dm-serif)'
-            }}
+            className="input-search text-accent-deep font-primary"
           />
-          <Search 
-            className="absolute right-3 top-1/2 -translate-y-1/2" 
-            size={16}
-            strokeWidth={2}
-            style={{ color: 'var(--neutral-sand)' }}
-          />
+          <Search className="icon-position-search text-neutral-sand" size={16} strokeWidth={2} />
         </div>
       </div>
     </nav>
