@@ -1,6 +1,6 @@
 # Design System
 
-A reusable, themeable design system for the BookHouse application.
+A reusable, themable design system for the BookHouse application.
 
 ## Structure
 
