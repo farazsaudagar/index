@@ -2,10 +2,12 @@
 
 import { useState } from "react";
 import { Search } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 export default function Navbar() {
   const [activeLink, setActiveLink] = useState("explore");
   const [searchQuery, setSearchQuery] = useState("");
+  const router = useRouter();
 
   const navLinks = [
     { id: "explore", label: "explore" },
@@ -35,7 +37,12 @@ export default function Navbar() {
             {navLinks.map((link) => (
               <button
                 key={link.id}
-                onClick={() => setActiveLink(link.id)}
+                onClick={() => {
+                  setActiveLink(link.id);
+                  if (link.id === "explore") {
+                    router.push("/explore");
+                  }
+                }}
                 className="text-sm hover:opacity-70 transition-opacity duration-200"
                 style={{ 
                   color: 'var(--accent-blue)',
