@@ -40,3 +40,542 @@ body {
 .shelf-scroll::-webkit-scrollbar {
   display: none;
 }
+
+@layer components {
+  /* Button Components */
+  .btn-icon {
+    @apply grid place-items-center rounded-full hover:scale-105 transition-all z-10 focus:outline-none focus:ring-2 focus:ring-offset-2;
+    --tw-ring-color: rgba(216, 196, 182, 0.4);
+  }
+  
+  .btn-icon-disabled {
+    @apply opacity-50 cursor-not-allowed;
+  }
+  
+  .btn-icon-enabled {
+    @apply cursor-pointer;
+  }
+
+  /* Layout Components */
+  .container-shelf-wrapper {
+    @apply relative mt-6 flex justify-center;
+  }
+  
+  .container-shelf-responsive {
+    @apply w-[95%] sm:w-[88%] md:w-[85%] lg:w-[82%] xl:w-[92%] transition-all duration-200;
+  }
+  
+  .container-shelf-section {
+    @apply relative mx-auto;
+  }
+  
+  .layout-flex-center {
+    @apply flex items-center justify-between;
+  }
+  
+  .layout-flex-row {
+    @apply flex items-center gap-6;
+  }
+  
+  .layout-flex-col-tall {
+    @apply flex flex-col justify-between h-[144px] py-2;
+  }
+  
+  .layout-book-deck {
+    @apply relative flex-1 flex items-center justify-end;
+  }
+  
+  .layout-loading {
+    @apply flex items-center justify-center min-h-[400px];
+  }
+  
+  .layout-grid-shelves {
+    @apply grid grid-cols-1 md:grid-cols-2 gap-6;
+  }
+
+  /* Shelf Components */
+  .shelf-plank-base {
+    @apply relative rounded-[20px] px-5 py-4;
+  }
+  
+  .shelf-plank-hoverable {
+    @apply transition-transform duration-200 ease-out hover:-translate-y-1;
+  }
+  
+  .shelf-wall-shadow {
+    @apply pointer-events-none absolute inset-x-6 -bottom-3 h-6 rounded-[20px];
+  }
+  
+  .shelf-top-bevel {
+    @apply pointer-events-none absolute left-0 right-0 top-0 h-[4px] rounded-t-[20px];
+  }
+  
+  .shelf-section-plank {
+    @apply rounded-[12px] py-4 relative;
+  }
+  
+  .shelf-section-bevel {
+    @apply absolute top-0 left-0 right-0 h-[6px] rounded-t-[12px] pointer-events-none;
+  }
+  
+  .shelf-book-area {
+    @apply absolute top-[6px] bottom-[10px] left-[20px] right-[20px] pointer-events-none;
+  }
+  
+  .shelf-fade-overlay {
+    @apply absolute top-0 bottom-0 w-8 pointer-events-none z-10;
+  }
+
+  /* Input Components */
+  .input-search {
+    @apply w-[486px] h-[30px] px-4 pr-10 rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-offset-0 transition-all;
+    --tw-ring-color: rgba(62, 88, 121, 0.2);
+  }
+  
+  .icon-position-search {
+    @apply absolute right-3 top-1/2 -translate-y-1/2;
+  }
+
+  /* Navigation Components */
+  .nav-link {
+    @apply text-sm hover:opacity-70 transition-opacity;
+  }
+
+  /* Utility Components */
+  .fade-gradient-right {
+    @apply pointer-events-none absolute inset-0 rounded-[8px];
+  }
+
+  /* Book Components */
+  .book-shadow-contact {
+    @apply absolute bottom-[-3px] left-1/2 -translate-x-1/2 pointer-events-none;
+  }
+  
+  .book-shadow-bottom {
+    @apply absolute bottom-[-8px] left-1/2 -translate-x-1/2 pointer-events-none;
+  }
+  
+  .book-face-container {
+    @apply overflow-hidden relative;
+  }
+  
+  .book-face-interactive {
+    @apply overflow-hidden focus-within:ring-2 focus-within:ring-offset-2 transition-all;
+    --tw-ring-color: rgba(216, 196, 182, 0.4);
+  }
+  
+  .book-image {
+    @apply w-full h-full object-cover;
+  }
+  
+  .book-button {
+    @apply w-full h-full overflow-hidden focus:outline-none;
+  }
+
+  /* Section Components */
+  .section-wall-shadow {
+    @apply absolute inset-x-0 bottom-0 h-6 -bottom-4;
+  }
+  
+  .section-content-wrapper {
+    @apply relative px-[40px];
+  }
+  
+  .section-track {
+    @apply flex gap-6 px-8;
+  }
+
+  /* Chevron Button Components */
+  .chevron-button {
+    @apply absolute top-1/2 -translate-y-1/2 z-20 rounded-full flex items-center justify-center hover:opacity-80 focus:outline-none focus:ring-2 focus:ring-offset-2 transition-all;
+    --tw-ring-color: rgba(216, 196, 182, 0.4);
+  }
+  
+  .chevron-button-disabled {
+    @apply opacity-20 cursor-not-allowed;
+  }
+  
+  .chevron-button-enabled {
+    @apply cursor-pointer;
+  }
+  
+  .chevron-button-left {
+    @apply -left-14;
+  }
+  
+  .chevron-button-right {
+    @apply -right-14;
+  }
+
+  /* Avatar Components */
+  .avatar-circle {
+    @apply rounded-full flex items-center justify-center flex-shrink-0;
+  }
+
+  /* Book Deck Components */
+  .book-deck-background {
+    @apply absolute inset-0 rounded-[12px] pointer-events-none;
+    background-color: var(--neutral-sand);
+  }
+  
+  .book-deck-container {
+    @apply relative rounded-[12px] px-3 py-4;
+  }
+
+  /* Dynamic Styles - Use CSS Variables */
+  .style-dynamic-width {
+    width: var(--dynamic-width);
+  }
+  
+  .style-dynamic-height {
+    height: var(--dynamic-height);
+  }
+  
+  .style-dynamic-size {
+    width: var(--dynamic-size);
+    height: var(--dynamic-size);
+  }
+  
+  .style-dynamic-margin-right {
+    margin-right: var(--dynamic-margin-right);
+  }
+  
+  .style-dynamic-position-right {
+    right: var(--dynamic-position-right);
+  }
+  
+  .style-dynamic-transform {
+    transform: var(--dynamic-transform);
+  }
+  
+  .style-dynamic-transition {
+    transition: var(--dynamic-transition);
+  }
+  
+  .style-dynamic-background {
+    background: var(--dynamic-background);
+  }
+  
+  .style-dynamic-color {
+    color: var(--dynamic-color);
+  }
+  
+  .style-dynamic-shadow {
+    box-shadow: var(--dynamic-shadow);
+  }
+  
+  .style-dynamic-border {
+    border: var(--dynamic-border);
+  }
+  
+  .style-dynamic-filter {
+    filter: var(--dynamic-filter);
+  }
+  
+  /* Static Color Classes */
+  .bg-shelf-plank {
+    background-color: var(--shelf-plank);
+  }
+  
+  .bg-neutral-sand {
+    background-color: var(--neutral-sand);
+  }
+  
+  .bg-gradient-top {
+    background-color: var(--gradient-top);
+  }
+  
+  .text-accent-deep {
+    color: var(--accent-deep);
+  }
+  
+  .text-accent-blue {
+    color: var(--accent-blue);
+  }
+  
+  .text-neutral-sand {
+    color: var(--neutral-sand);
+  }
+  
+  .bg-accent-deep {
+    background-color: var(--accent-deep);
+  }
+  
+  /* Shadow and Filter Utilities */
+  .shadow-book-contact {
+    filter: blur(6px);
+    height: 8px;
+    width: 70%;
+    border-radius: 9999px;
+    z-index: 0;
+  }
+  
+  .shadow-book-bottom {
+    filter: blur(4px);
+    height: 6px;
+    width: 80%;
+    border-radius: 9999px;
+    z-index: 0;
+  }
+  
+  .shadow-wall {
+    filter: blur(12px);
+  }
+  
+  .bevel-gradient {
+    background: linear-gradient(180deg, color-mix(in srgb, var(--white) 50%, transparent), transparent);
+  }
+  
+  .bevel-gradient-section {
+    background: linear-gradient(180deg, color-mix(in srgb, var(--white) 55%, transparent), transparent);
+  }
+  
+  .fade-gradient-left {
+    background: linear-gradient(to right, var(--neutral-sand), transparent);
+  }
+  
+  .fade-gradient-right-inverse {
+    background: linear-gradient(to left, var(--neutral-sand), transparent);
+  }
+  
+  .fade-gradient-right-overlay {
+    background: linear-gradient(to right, transparent 0%, transparent 30%, color-mix(in srgb, var(--shelf-plank) 80%, transparent) 100%);
+  }
+  
+  /* Typography */
+  .font-primary {
+    font-family: var(--font-dm-serif);
+  }
+  
+  .font-weight-medium {
+    font-weight: 500;
+  }
+  
+  /* Layout Utilities */
+  .max-width-section {
+    max-width: 1000px;
+  }
+  
+  .max-width-main {
+    max-width: 1400px;
+  }
+  
+  .padding-section-track {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  
+  /* Button Variants */
+  .btn-icon-variant-default {
+    background-color: color-mix(in srgb, var(--base-light) 85%, transparent);
+    border: 1px solid color-mix(in srgb, var(--neutral-sand) 50%, transparent);
+    color: var(--accent-blue);
+    box-shadow: 0 2px 8px color-mix(in srgb, var(--accent-deep) 10%, transparent);
+  }
+  
+  .btn-icon-variant-overlay {
+    background-color: color-mix(in srgb, var(--base-light) 85%, transparent);
+    border: 1px solid color-mix(in srgb, var(--neutral-sand) 50%, transparent);
+    color: var(--accent-blue);
+    box-shadow: 0 2px 8px color-mix(in srgb, var(--accent-deep) 10%, transparent);
+    backdrop-filter: blur(4px);
+  }
+  
+  .btn-icon-variant-ghost {
+    background-color: transparent;
+    border: none;
+    color: var(--accent-deep);
+    box-shadow: none;
+  }
+  
+  /* Shadow Utilities */
+  .shadow-book-deck {
+    box-shadow: 
+      inset 0 2px 8px color-mix(in srgb, var(--accent-deep) 12%, transparent),
+      inset 0 -2px 6px color-mix(in srgb, var(--accent-deep) 8%, transparent),
+      inset 4px 0 8px color-mix(in srgb, var(--accent-deep) 10%, transparent),
+      inset -4px 0 8px color-mix(in srgb, var(--accent-deep) 10%, transparent);
+  }
+  
+  .shadow-shelf-plank-default {
+    box-shadow: 0 10px 24px color-mix(in srgb, var(--accent-deep) 10%, transparent);
+  }
+  
+  .shadow-shelf-plank-large {
+    box-shadow: 0 12px 28px color-mix(in srgb, var(--accent-deep) 12%, transparent);
+  }
+  
+  .border-shelf-plank {
+    border: 1px solid color-mix(in srgb, var(--accent-deep) 8%, transparent);
+  }
+  
+  /* Overflows */
+  .overflow-x-hidden-y-visible {
+    overflow-x: hidden;
+    overflow-y: visible;
+  }
+  
+  /* Gap Utilities */
+  .gap-dynamic {
+    gap: var(--dynamic-gap);
+  }
+  
+  /* Section Specific */
+  .section-wall-shadow-bg {
+    background: color-mix(in srgb, var(--accent-deep) 10%, transparent);
+  }
+  
+  .section-shelf-shadow {
+    box-shadow: 0 10px 24px color-mix(in srgb, var(--accent-deep) 10%, transparent);
+  }
+  
+  .section-shelf-border {
+    border: 1px solid color-mix(in srgb, var(--accent-deep) 8%, transparent);
+  }
+  
+  .section-book-area-shadow {
+    box-shadow: 
+      inset 0 2px 8px color-mix(in srgb, var(--accent-deep) 12%, transparent),
+      inset 0 -2px 6px color-mix(in srgb, var(--accent-deep) 8%, transparent),
+      inset 4px 0 8px color-mix(in srgb, var(--accent-deep) 10%, transparent),
+      inset -4px 0 8px color-mix(in srgb, var(--accent-deep) 10%, transparent);
+  }
+  
+  .z-index-negative {
+    z-index: -1;
+  }
+  
+  /* Book Shadow Utilities - Pre-computed color-mix values */
+  .shadow-book-contact-bg {
+    background: color-mix(in srgb, var(--accent-deep) 22%, transparent);
+  }
+  
+  .shadow-book-bottom-bg {
+    background: color-mix(in srgb, var(--accent-deep) 15%, transparent);
+  }
+  
+  .shadow-book-default {
+    box-shadow: 0 3px 6px color-mix(in srgb, var(--accent-deep) 18%, transparent);
+  }
+  
+  .shadow-book-hover {
+    box-shadow: 0 8px 12px color-mix(in srgb, var(--accent-deep) 24%, transparent);
+  }
+  
+  /* Book Hover Effects */
+  .book-hover-effect {
+    transition: all 150ms ease-out;
+  }
+  
+  .book-hover-effect:hover {
+    transform: translateY(-4px);
+  }
+  
+  .book-hover-effect-default:hover {
+    box-shadow: 0 8px 12px color-mix(in srgb, var(--accent-deep) 24%, transparent);
+  }
+  
+  /* Dynamic Calculation Utilities */
+  .calc-transform-x {
+    transform: translateX(calc(var(--transform-x) * var(--card-width) * -1));
+  }
+  
+  .calc-width-multiplier {
+    width: calc(var(--width-base) * var(--width-multiplier) + var(--width-gap) * (var(--width-multiplier) - 1));
+  }
+  
+  .calc-deck-width {
+    width: calc(var(--book-width) * var(--book-count) + var(--book-gap) * calc(var(--book-count) - 1));
+  }
+  
+  .calc-position-button {
+    right: calc(20px + 12px - var(--button-size) / 2 - 4px);
+  }
+  
+  /* Transition Utilities */
+  .transition-transform-slow {
+    transition: transform 300ms ease-in-out;
+  }
+  
+  .transition-none {
+    transition: none;
+  }
+  
+  /* Section Track Utilities */
+  .track-width-calc {
+    width: calc(var(--card-width) * var(--item-count));
+  }
+  
+  /* Constants as CSS Variables */
+  .vars-book-small {
+    --book-width: 85px;
+    --book-height: 134px;
+  }
+  
+  .vars-book-large {
+    --book-width: 130px;
+    --book-height: 195px;
+  }
+  
+  .vars-button-medium {
+    --button-size: 40px;
+  }
+  
+  .vars-gap-small {
+    --book-gap: 12px;
+  }
+  
+  .vars-gap-large {
+    --book-gap: 24px;
+  }
+  
+  .vars-card-width {
+    --card-width: calc(var(--book-width) + var(--book-gap));
+  }
+  
+  /* Icon Size Calculation */
+  .icon-size-auto {
+    font-size: calc(var(--button-size) * 0.45);
+  }
+  
+  .icon-size-auto-button {
+    width: calc(var(--button-size) * 0.45);
+    height: calc(var(--button-size) * 0.45);
+  }
+  
+  /* Shelf Plank Wall Shadow */
+  .shelf-wall-shadow-bg {
+    background: color-mix(in srgb, var(--accent-deep) 10%, transparent);
+  }
+  
+  /* Position Calculation Utilities */
+  .position-right-calc {
+    right: calc(20px + 12px - var(--button-size) / 2 - 4px);
+  }
+  
+  /* Deck Width Calculation */
+  .deck-width-calc {
+    width: calc(var(--book-width) * var(--book-count) + var(--book-gap) * calc(var(--book-count) - 1));
+    min-width: 0;
+  }
+  
+  /* Button Size Variable Classes */
+  .vars-button-small {
+    --button-size: 32px;
+  }
+  
+  .vars-button-large {
+    --button-size: 48px;
+  }
+  
+  /* Avatar Shadow */
+  .shadow-avatar {
+    box-shadow: 0 2px 6px color-mix(in srgb, var(--accent-deep) 20%, transparent);
+  }
+  
+  /* Icon Size Calculation */
+  .icon-size-half {
+    width: calc(var(--dynamic-size) / 2);
+    height: calc(var(--dynamic-size) / 2);
+  }
+}

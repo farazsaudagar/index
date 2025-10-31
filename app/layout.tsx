@@ -14,7 +14,7 @@ const playfairDisplay = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Shelv - Discover Shelves That Feel Like You",
+  title: "BookHouse - Discover Shelves That Feel Like You",
   description: "A curated book discovery platform",
 };
 
